@@ -1,0 +1,102 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+nav {
+    background-color: #38659b;
+    height: max-content;
+    display: flex;
+}
+
+nav .navSearch {
+    width: max-content;
+    vertical-align: bottom;
+    height: max-content;
+    float: left;
+    padding: 1%;
+    clear: none;
+    text-decoration: none;
+    color: aliceblue;
+    flex: auto;
+}
+
+nav .navUser {
+    width: max-content;
+    height: max-content;
+    float: right;
+    padding: 1%;
+    clear: none;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+main {
+    margin: auto;
+    display: flex;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+section {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
+form table {
+    display: grid;
+    place-items: center;
+    text-align: ce;
+    border: solid;
+    padding: 1%;
+}
+
+form table td {
+    padding: 1%;
+}
+form table * {
+    margin: 5%;
+}
+
+.olvidado {
+    text-decoration: none;
+    text-align: left;
+    float: left;
+}
+
+.registrarse {
+    text-decoration: none;
+    text-align: right;
+    float: right;
+}
+
+footer {
+    height:50px;
+    line-height:50px;
+    background:black;
+    color:white;
+    text-align:center;
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+}
+
+footer span {
+    float: left;
+    margin-left: 1%;
+}
+
+footer a {
+    float: right;
+    margin-right: 1%;
+}
