@@ -2,6 +2,7 @@ body {
     padding: 0px;
     margin: 0px;
     height: 100%;
+    width: 100%;
 }
 
 nav {
@@ -22,8 +23,16 @@ nav .navSearch {
     flex: auto;
 }
 
+nav .searchButton {
+    border-style: solid;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: white;
+}
+
 nav .navUser {
     width: max-content;
+    vertical-align: bottom;
     height: max-content;
     float: right;
     padding: 1%;
@@ -32,9 +41,11 @@ nav .navUser {
     color: aliceblue;
 }
 
-img {
-    display: block;
-    margin: auto;
+nav .userButton {
+    border-style: solid;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: white;
 }
 
 main {
@@ -80,15 +91,15 @@ form table * {
 }
 
 footer {
-    height:50px;
-    line-height:50px;
-    background:black;
-    color:white;
-    text-align:center;
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
+    height: 50px;
+    line-height: 50px;
+    background: black;
+    color: white;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 footer span {
@@ -99,4 +110,5 @@ footer span {
 footer a {
     float: right;
     margin-right: 1%;
+    color: white;
 }
