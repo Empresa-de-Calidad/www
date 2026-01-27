@@ -9,12 +9,17 @@
     </head>
     <body>
         <nav>
-            <a onclick="" href="#" class="navSearch">
+            <a onclick="showSearch(); return false;" href="#" class="navSearch">
                 <img src="svg/search_icon.svg" class="searchButton" width="32px">
-                <span id="nav_search_extension"></span>
+                <input id="nav_search_extension" type="search"/>
             </a>
-            <a onclick="" href="#" class="navUser">
+            <a onclick="toggleUserMenu(); return false;" href="#" class="navUser" id="navUserButton">
                 <img src="svg/user_icon.svg" class="userButton" width="32px">
+                <div class="userMenu" id="userMenu">
+                    <a href="#" class="userMenuItem">Perfil</a>
+                    <a href="#" class="userMenuItem">Ajustes</a>
+                    <a href="#" class="userMenuItem">Cerrar sesión</a>
+                </div>
             </a>
         </nav>
 
@@ -28,3 +33,4 @@
         </footer>
     </body>
 </html>
+ 
