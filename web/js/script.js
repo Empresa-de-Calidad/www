@@ -1,3 +1,16 @@
+// Cargar página por defecto
+function loadDefaultPage() {
+    fetch('main.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('mainPage').innerHTML = data;
+        })
+        .catch(error => console.error('Error cargando página por defecto:', error));
+}
+
+// Cargar página por defecto cuando se carga el documento
+document.addEventListener('DOMContentLoaded', loadDefaultPage);
+
 function openIndex() {
         window.location.replace("index.html");
 }
