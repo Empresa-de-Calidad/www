@@ -49,35 +49,6 @@
                 </article>
             </section>
 
-            <section class="settingSection">
-                <h3>Privacidad y Seguridad</h3>
-                <article class="settingItem">
-                    <span class="settingLabel">
-                        <h4>Cambiar contraseña</h4>
-                        <p>Actualiza tu contraseña regularmente</p>
-                    </span>
-                    <button class="changePasswordBtn">Cambiar</button>
-                </article>
-                <article class="settingItem">
-                    <span class="settingLabel">
-                        <h4>Autenticación de dos factores</h4>
-                        <p>Añade una capa extra de seguridad</p>
-                    </span>
-                    <span class="toggleSwitch" onclick="toggleSwitch(this)"></span>
-                </article>
-            </section>
-
-            <section class="settingSection dangerZone">
-                <h3>Zona de Peligro</h3>
-                <article class="settingItem">
-                    <span class="settingLabel">
-                        <h4>Eliminar cuenta</h4>
-                        <p>Esta acción es irreversible</p>
-                    </span>
-                </article>
-                <button class="deleteButton" onclick="confirmDelete()">Eliminar Cuenta</button>
-            </section>
-
             <button class="saveButton" onclick="saveSettings()">Guardar Cambios</button>
         </section>
     </main>
@@ -128,13 +99,6 @@
 
         function saveSettings() {
             alert('Cambios guardados correctamente');
-        }
-
-        function confirmDelete() {
-            if (confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible.')) {
-                alert('Tu cuenta ha sido eliminada');
-                window.location.href = 'index.html';
-            }
         }
 
         // Initialize dark mode on page load

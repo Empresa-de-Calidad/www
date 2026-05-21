@@ -328,64 +328,15 @@ function downloadWord() {
         alert('No hay documento seleccionado');
         return;
     }
-    
-    // Mostrar mensaje de procesamiento
-    const originalText = event.target.textContent;
-    event.target.textContent = 'Convirtiendo...';
-    event.target.disabled = true;
-    
-    // Intentar conversión real usando backend PHP
-    fetch('api/convert-pdf-to-docx.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            documentName: selectedDocumentName
-        })
-    })
-    .then(response => {
-        if (!response.ok) {
-            // Si el backend no está disponible, usar método alternativo
-            return response.json().then(err => {
-                throw new Error(err.error || 'Error en la conversión');
-            });
-        }
-        return response.blob();
-    })
-    .then(blob => {
-        // Crear link de descarga
-        const url = window.URL.createObjectURL(blob);
+    const pdfUrl = documentMap[selectedDocumentName];
+    if (pdfUrl) {
         const link = document.createElement('a');
-        link.href = url;
+        link.href = pdfUrl;
         link.download = selectedDocumentName + '.docx';
-        document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-        
-        // Restaurar botón
-        event.target.textContent = originalText;
-        event.target.disabled = false;
-    })
-    .catch(error => {
-        console.error('Error en conversión:', error);
-        
-        // Fallback: descargar PDF como .docx (método antiguo)
-        alert('Conversión no disponible. Descargando PDF como alternativa.\\n\\nPara habilitar la conversión real, configure el servidor PHP con LibreOffice.\\n\\nError: ' + error.message);
-        
-        const pdfUrl = documentMap[selectedDocumentName];
-        if (pdfUrl) {
-            const link = document.createElement('a');
-            link.href = pdfUrl;
-            link.download = selectedDocumentName + '.docx';
-            link.click();
-        }
-        
-        // Restaurar botón
-        event.target.textContent = originalText;
-        event.target.disabled = false;
-    });
+    } else {
+        alert('No se puede descargar este documento');
+    }
 }
 
 function uploadChanges() {

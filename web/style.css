@@ -280,13 +280,8 @@ footer a:hover {
     color: #7fa3c8;
 }
 
-/* Responsive Design */
+/* Legacy Responsive Design (auth pages) */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        padding: 0.5rem;
-    }
-
     nav .navSearch {
         width: 100%;
         min-width: unset;
@@ -300,20 +295,6 @@ footer a:hover {
         max-width: 100%;
         margin: 0 1rem;
         padding: 1.5rem;
-    }
-
-    footer {
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem 0.5rem;
-    }
-
-    footer span {
-        order: 2;
-    }
-
-    footer a {
-        order: 1;
     }
 }
 
@@ -695,7 +676,6 @@ main {
     padding: 2rem;
     min-height: calc(100vh - 200px);
     overflow-y: auto;
-    max-height: calc(100vh - 140px);
 }
 
 .profileHeader {
@@ -977,6 +957,7 @@ main {
     overflow: hidden;
     gap: 1rem;
     padding: 1rem;
+    min-height: 0;
 }
 
 .documentMain {
@@ -1025,13 +1006,21 @@ main {
 .documentViewer {
     flex: 1;
     width: 100%;
+    min-height: 500px;
     background: white;
     border: 1px solid #ddd;
     border-radius: 4px;
     overflow: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+.documentViewer embed {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
 }
 
 .documentFooter {
@@ -1043,6 +1032,12 @@ main {
     background: white;
     border-top: 1px solid #ddd;
     border-radius: 4px;
+}
+
+.documentControls {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 1rem;
 }
 
 .navButton {
@@ -1198,117 +1193,6 @@ main {
 
 .changeEntry:last-child {
     border-bottom: none;
-}
-
-.changeEntry .changeDate {
-    color: #999;
-    font-size: 0.8rem;
-}
-
-.changeEntry .changeAuthor {
-    color: #38659b;
-    font-weight: 600;
-}
-
-.changeEntry .changeMessage {
-    color: #666;
-    margin-top: 0.25rem;
-}
-
-.documentMain {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.documentNameSection {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.documentNameSection h2 {
-    color: #333;
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-}
-
-.documentNameSection .version {
-    color: #999;
-    font-size: 0.9rem;
-}
-
-.documentViewer {
-    flex: 1;
-    width: 100%;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-}
-
-.viewerPlaceholder {
-    text-align: center;
-    color: #bbb;
-}
-
-.documentActions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    width: 180px;
-}
-
-.actionBtn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    text-align: center;
-    color: white;
-}
-
-.actionBtn:hover {
-    opacity: 0.9;
-}
-
-.documentFooter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-.navButton {
-    padding: 0.5rem 1rem;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    width: 50px;
-    text-align: center;
-}
-
-.navButton:hover {
-    background-color: #e0e0e0;
-}
-
-.pageInfo {
-    color: #666;
-    font-size: 0.9rem;
-    min-width: 150px;
-    text-align: center;
-}
-#pdfCanvas {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 4px;
 }
 
 /* ===== Additional Utility Classes ===== */
@@ -2071,4 +1955,512 @@ body.dark-mode .docCard:hover {
 body.dark-mode .userMenu, body.dark-mode menu.userMenu {
     background: rgba(42, 42, 42, 0.95);
     border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* ---------- Tablet (max-width: 1024px) ---------- */
+@media (max-width: 1024px) {
+    /* Dashboard grid adjusts */
+    .dashboard {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.5rem;
+    }
+
+    /* Document viewer sidebar narrows */
+    .documentSidebar {
+        width: 180px;
+    }
+
+    /* Profile and settings cards */
+    .profileCard, .settingsCard {
+        max-width: 100%;
+    }
+
+    /* Auth forms */
+    #loginContainer,
+    #registerContainer {
+        max-width: 380px;
+    }
+}
+
+/* ---------- Mobile landscape / small tablet (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+    /* Navbar compact */
+    nav, .navbar {
+        padding: 0.5rem 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .navRank {
+        display: none;
+    }
+
+    nav .userButton {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* Main content padding */
+    main {
+        padding: 1.5rem 1rem;
+    }
+
+    .mainContent {
+        gap: 1.5rem;
+    }
+
+    /* Welcome section */
+    .welcomeSection h2 {
+        font-size: 1.3rem;
+    }
+
+    .welcomeSection p {
+        font-size: 0.9rem;
+    }
+
+    /* Dashboard single/two column */
+    .dashboard {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+
+    .docCard {
+        padding: 1.25rem;
+    }
+
+    /* Search container */
+    .searchContainer {
+        margin-bottom: 1.5rem;
+    }
+
+    .searchContainer form {
+        flex-wrap: wrap;
+    }
+
+    .searchContainer input {
+        min-width: 100%;
+    }
+
+    .searchContainer button {
+        flex: 1;
+        min-width: auto;
+    }
+
+    /* Document page: sidebar on top */
+    .documentContent {
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    .documentSidebar {
+        width: 100%;
+        padding-top: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .documentBackButton {
+        width: auto;
+        flex: 0 0 auto;
+    }
+
+    .documentActionsVertical {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 0;
+        gap: 0.5rem;
+    }
+
+    .actionBtn {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .changelogDropdown {
+        width: 100%;
+    }
+
+    .documentViewer {
+        min-height: 400px;
+    }
+
+    .documentViewer embed {
+        min-height: 400px;
+    }
+
+    .documentNameSection {
+        padding: 0;
+    }
+
+    .documentNameSection h2 {
+        font-size: 1.1rem;
+    }
+
+    /* Profile page */
+    .profileContainer {
+        padding: 1.5rem 1rem;
+    }
+
+    .profileHeader h1 {
+        font-size: 1.5rem;
+    }
+
+    .profileCard {
+        padding: 1.5rem;
+    }
+
+    .profileAvatar {
+        width: 90px;
+        height: 90px;
+        font-size: 2.5rem;
+    }
+
+    .profileField {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .profileField label {
+        min-width: auto;
+    }
+
+    /* Settings page */
+    .settingsContainer {
+        padding: 1.5rem 1rem;
+    }
+
+    .settingsHeader h1 {
+        font-size: 1.5rem;
+    }
+
+    .settingItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .toggleSwitch {
+        align-self: flex-start;
+    }
+
+    /* Auth pages */
+    .authSection {
+        padding: 1.5rem;
+    }
+
+    #loginContainer,
+    #registerContainer {
+        padding: 1.5rem;
+        max-width: 100%;
+    }
+
+    /* Footer */
+    footer, .footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    /* Filter panel */
+    .filterContent {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    /* No access message */
+    .noAccessMessage {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    /* Login link in navbar */
+    .loginLink {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.75rem;
+    }
+}
+
+/* ---------- Mobile portrait (max-width: 480px) ---------- */
+@media (max-width: 480px) {
+    /* Navbar minimal */
+    nav, .navbar {
+        padding: 0.4rem 0.5rem;
+    }
+
+    nav .userButton {
+        width: 34px;
+        height: 34px;
+    }
+
+    /* Main content tight */
+    main {
+        padding: 1rem 0.75rem;
+    }
+
+    /* Welcome section */
+    .welcomeSection h2 {
+        font-size: 1.1rem;
+    }
+
+    .welcomeSection p {
+        font-size: 0.85rem;
+    }
+
+    .welcomeSection img {
+        width: 48px;
+    }
+
+    /* Dashboard single column */
+    .dashboard {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .docCard {
+        padding: 1rem;
+    }
+
+    .docCard h3 {
+        font-size: 0.95rem;
+    }
+
+    .docCard p {
+        font-size: 0.85rem;
+    }
+
+    .docMeta, footer.docMeta {
+        flex-direction: column;
+        gap: 0.25rem;
+        font-size: 0.8rem;
+    }
+
+    /* Search minimal */
+    .searchContainer form {
+        flex-direction: column;
+    }
+
+    .searchContainer button {
+        width: 100%;
+    }
+
+    /* Document viewer */
+    .documentContent {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .documentSidebar {
+        gap: 0.4rem;
+    }
+
+    .documentActionsVertical {
+        gap: 0.4rem;
+    }
+
+    .actionBtn {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .documentViewer {
+        min-height: 300px;
+    }
+
+    .documentViewer embed {
+        min-height: 300px;
+    }
+
+    .documentNameSection h2 {
+        font-size: 1rem;
+    }
+
+    .documentControls .actionBtn {
+        width: 100%;
+    }
+
+    /* Profile page */
+    .profileContainer {
+        padding: 1rem 0.75rem;
+    }
+
+    .profileHeader h1 {
+        font-size: 1.3rem;
+    }
+
+    .profileCard {
+        padding: 1rem;
+    }
+
+    .profileAvatar {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .profileSection h3 {
+        font-size: 0.95rem;
+    }
+
+    /* Settings page */
+    .settingsContainer {
+        padding: 1rem 0.75rem;
+    }
+
+    .settingsHeader h1 {
+        font-size: 1.3rem;
+    }
+
+    .settingSection {
+        padding: 1rem;
+    }
+
+    .settingLabel h4 {
+        font-size: 0.9rem;
+    }
+
+    .settingLabel p {
+        font-size: 0.8rem;
+    }
+
+    .saveButton {
+        padding: 0.65rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Auth pages */
+    #loginContainer,
+    #registerContainer {
+        padding: 1.25rem;
+    }
+
+    #logoSection img {
+        width: 70px;
+    }
+
+    .authForm h1 {
+        font-size: 1.2rem;
+    }
+
+    .formGroup label {
+        font-size: 0.85rem;
+    }
+
+    .formGroup input {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .submitBtn {
+        padding: 0.65rem;
+        font-size: 0.9rem;
+    }
+
+    .authOptionBtn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .authOptionLink {
+        font-size: 0.85rem;
+    }
+
+    /* Footer compact */
+    footer, .footer {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    /* Backlink */
+    .backLink {
+        font-size: 0.9rem;
+    }
+
+    /* Filter panel */
+    .filterContent {
+        padding: 1.25rem;
+    }
+
+    .filterContent h3 {
+        font-size: 1rem;
+    }
+
+    .filterButtons button {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    /* User menu */
+    .userMenu, menu#userMenu {
+        min-width: 150px;
+    }
+
+    .userMenu a.userMenuItem {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+
+    /* No access */
+    .noAccessMessage {
+        padding: 1.25rem;
+    }
+
+    .noAccessMessage h3 {
+        font-size: 1.1rem;
+    }
+
+    .noAccessMessage p {
+        font-size: 0.85rem;
+    }
+
+    /* Locked cards */
+    .lockIcon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* ---------- Very small screens (max-width: 360px) ---------- */
+@media (max-width: 360px) {
+    main {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .dashboard {
+        gap: 0.5rem;
+    }
+
+    .docCard {
+        padding: 0.75rem;
+    }
+
+    .profileCard, .settingsCard {
+        border-radius: 4px;
+    }
+
+    .documentViewer {
+        min-height: 250px;
+    }
+
+    .documentViewer embed {
+        min-height: 250px;
+    }
+
+    .actionBtn {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    #loginContainer,
+    #registerContainer {
+        padding: 1rem;
+    }
+
+    .authForm h1 {
+        font-size: 1.1rem;
+    }
 }
